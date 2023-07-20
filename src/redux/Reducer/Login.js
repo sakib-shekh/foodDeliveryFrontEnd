@@ -2,7 +2,7 @@ import { createSlice ,createAsyncThunk} from "@reduxjs/toolkit";
 export const loginUser=createAsyncThunk("loginUser",async(data)=>{
    
     console.log(2,data);
-    const response=await fetch("http://localhost:5001/api/loginuser",{
+    const response=await fetch("https://foodiebackend-wwb1.onrender.com/api/loginuser",{
 
         method:"POST",
         headers: {

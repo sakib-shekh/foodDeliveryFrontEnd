@@ -1,7 +1,7 @@
 import { createSlice ,createAsyncThunk} from "@reduxjs/toolkit";
 
 export const createUser=createAsyncThunk("createUser",async(data)=>{
-    const response=await fetch("http://localhost:5001/api/createuser",{
+    const response=await fetch("https://foodiebackend-wwb1.onrender.com/api/createuser",{
 
         method:"POST",
         headers: {

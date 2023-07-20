@@ -18,9 +18,9 @@ function App() {
           <Route exact path="/register" element={<Register />}></Route>
           <Route exact path="/search" element={<Search />}></Route>
           <Route exact path="/product" element={<ProductView />}></Route>
-          <Route exact path="/product" element={<ProductView />}></Route>
           <Route exact path="/cart" element={<Cart />}></Route>
           <Route exact path="/profile" element={<Profile />}></Route>
+          <Route exact path="*" element={<Home />}></Route>
         </Routes>
       </Router>
 

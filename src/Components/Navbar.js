@@ -70,7 +70,7 @@ function Navbar() {
             <div className="w-2/6 sm:w-3/12">
               <div className="w-full  flex justify-center items-center " onClick={()=>{navigate('/profile')}}>
                 <button>
-                  {localStorage.getItem("name")}
+                  {localStorage.getItem("name").substring(0,8)}
                 </button>
               </div>
             </div>
