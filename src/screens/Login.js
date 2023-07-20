@@ -1,12 +1,26 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch} from "react-redux";
 import { loginUser } from "../redux/Reducer/Login";
-import { useNavigate } from "react-router-dom";
-
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useRef } from "react";
 function Login() {
-  const navigate=useNavigate();
+  const toastId=useRef(null);
+  const dismiss = () =>  toast.dismiss(toastId.current);
+  const notify = (temp) => {
+   toastId.current= toast(temp, {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      });
+  };
   const dispatch=useDispatch();
   const[login,setlogin]=useState({email:"",password:""});
     const handlChange=(e)=>{
@@ -14,11 +28,22 @@ function Login() {
     }
     const clicked=async(e)=>{
         e.preventDefault();
+        if(login.email.length === 0 || login.password === 0)
+        {
+          await dismiss();
+          await notify("please enter valid details!");
+          return;
+        }
         await dispatch(loginUser(login));
-        navigate('/');
+        await dismiss();
+        if(window.localStorage.getItem('message')!=='success')
+        await notify(window.localStorage.getItem('message'));
+
     }
+
   return (
-    <div className="bg-red-400 h-screen flex justify-center items-center">
+    <>
+     <div className="bg-red-400 h-screen flex justify-center items-center">
       <div className="bg-white rounded-lg p-5 w-70 flex justify-center">
         <div>
           <form>
@@ -80,6 +105,7 @@ function Login() {
 
       </div>
     </div>
+    </>
   );
 }
 

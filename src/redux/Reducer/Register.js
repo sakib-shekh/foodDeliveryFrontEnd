@@ -1,8 +1,7 @@
 import { createSlice ,createAsyncThunk} from "@reduxjs/toolkit";
 
-
 export const createUser=createAsyncThunk("createUser",async(data)=>{
-    const response=await fetch("https://foodiebackend-wwb1.onrender.com/api/createuser",{
+    const response=await fetch("http://localhost:5001/api/createuser",{
 
         method:"POST",
         headers: {
@@ -26,13 +25,17 @@ const registerUserSlice =createSlice({
 
     },
     extraReducers :(builder)=>{
-        builder.addCase(createUser.fulfilled,(state,action)=>{
-            state.isLoading=false;  
-            state.message=action.payload.message;
-            window.localStorage.setItem('name',action.payload.name);
-            window.localStorage.setItem('email',action.payload.email);
-            window.localStorage.setItem('token',action.payload.token);
-            window.location.replace('/');
+        builder.addCase(createUser.fulfilled,async(state,action)=>{
+              
+          state.message=await action.payload.message;
+          window.localStorage.setItem('message',action.payload.message);
+            if(action.payload.message !=='success')
+            return;
+           await window.localStorage.setItem('name',action.payload.name);
+          await  window.localStorage.setItem('email',action.payload.email);
+          await  window.localStorage.setItem('token',action.payload.token);
+         state.isLoading= await false;
+         window.location.replace('/');
         })
         builder.addCase(createUser.pending,(state)=>{
             state.isLoading=true;  

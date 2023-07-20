@@ -6,6 +6,7 @@ import { useDispatch,useSelector } from "react-redux";
 import { searchFood } from "../redux/Reducer/searchFood";
 import { useEffect} from "react";
 import FoodArea from '../Components/foodArea';
+import Footer from "../Components/Footer";
 
 function Home() {
 
@@ -25,6 +26,9 @@ data = useSelector((state) => {
 
   return (
     
+    
+
+    <>
     <div>
       <Navbar/>
       <Carousel/>
@@ -37,6 +41,8 @@ data = useSelector((state) => {
       }
       </div>
     </div>
+    <Footer/>
+    </>
   );
 }
 

@@ -3,6 +3,7 @@ import Navbar from "../Components/Navbar";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import {remove} from '../redux/Reducer/CartItems'
+
 function Cart() {
   const dispatch=useDispatch();
   const data = useSelector((state) => {
@@ -16,7 +17,7 @@ function Cart() {
       <Navbar />
       {!data.CartQuantity
         ?
-         <div className="w-full h-full flex justify-center items-center flex-col md:p-10">
+         <div className="w-full h-screen flex justify-center items-center flex-col md:p-10">
                 <img className="w-full sm:w-5/6 md:w-5/12" src="https://img.freepik.com/free-vector/man-shopping-supermarket_74855-7612.jpg?w=826&t=st=1689260857~exp=1689261457~hmac=f2f1759c65cef8f3ae78b229bfb686c50d11effd8c346376a898389839c1c264" alt="..."></img>
                 <h1 className="text-2xl text-black ">Cart is Empty</h1>
         </div>

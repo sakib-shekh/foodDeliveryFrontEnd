@@ -54,6 +54,7 @@ function Categories() {
         <Carousel
           className="w-full h-36 sm:h-36 lg:h-52  p-2 sm:p-4 "
           responsive={responsive}
+          removeArrowOnDeviceType={['mobile','tablet']}
         >
           {data.map((e, index) => {
             return <div key={index}>

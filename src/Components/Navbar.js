@@ -6,7 +6,6 @@ import { useNavigate } from "react-router-dom";
 function Navbar() {
   const navigate = useNavigate();
   const despatch = useDispatch();
-  const [st, setSt] = useState("hidden");
   const [search, setSearch] = useState("");
   const handleClick = (e) => {
     setSearch({ ...search, [e.target.name]: e.target.value });
@@ -19,16 +18,6 @@ function Navbar() {
       navigate("/search");
     }
   };
-  const logout = () => {
-    window.localStorage.removeItem("token");
-    window.localStorage.removeItem("name");
-    window.localStorage.removeItem("email");
-    navigate("/login");
-  };
-  const showLogOut = () => {
-    if (st === "hidden") setSt("");
-    else setSt("hidden");
-  };
   return (
     <nav className="flex flex-col  w-full">
       <div className=" bg-red-400 w-full h-12 flex font-sans text-slate-50 pl-4 pr-4 lg:pl-10 lg:pr-10 ">
@@ -36,7 +25,7 @@ function Navbar() {
           <h1 className="font-bold">
             <Link to="/">
               <img
-                className="h-8  "
+                className="h-6  "
                 src="/logo-no-background.png"
                 alt="..."
               ></img>
@@ -79,23 +68,9 @@ function Navbar() {
           )}
           {localStorage.getItem("token") && (
             <div className="w-2/6 sm:w-3/12">
-              <div className="w-full  flex justify-center items-center ">
-                <button onClick={showLogOut}>
+              <div className="w-full  flex justify-center items-center " onClick={()=>{navigate('/profile')}}>
+                <button>
                   {localStorage.getItem("name")}
-                </button>
-              </div>
-
-              <div
-                className={
-                  " bg-white text-slate-800 z-10 absolute flex justify-center items-center flex-col right-2 shadow-sm top-10 p-2 rounded border-2 " +
-                  st
-                }
-              >
-                <Link to="/orders" className="hover:bg-slate-200 w-full">
-                  Orders
-                </Link>
-                <button onClick={logout} className="hover:bg-slate-200 w-full">
-                  Log Out
                 </button>
               </div>
             </div>

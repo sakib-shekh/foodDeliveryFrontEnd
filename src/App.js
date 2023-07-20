@@ -5,11 +5,12 @@ import ProductView from "./screens/ProductView";
 import Register from "./screens/Register";
 import Search from "./screens/Search";
 import Cart from "./screens/Cart";
-import Temp from "./screens/Temp";
+import { ToastContainer } from "react-toastify";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Profile from "./screens/Profile";
 function App() {
   return (
-    <>
+    <><ToastContainer/>
       <Router>
         <Routes>
           <Route exact path="/" element={<Home />}></Route>
@@ -19,9 +20,10 @@ function App() {
           <Route exact path="/product" element={<ProductView />}></Route>
           <Route exact path="/product" element={<ProductView />}></Route>
           <Route exact path="/cart" element={<Cart />}></Route>
-          <Route exact path="/temp" element={<Temp/>}></Route>
+          <Route exact path="/profile" element={<Profile />}></Route>
         </Routes>
       </Router>
+
     </>
   );
 }
