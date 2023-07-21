@@ -10,12 +10,12 @@ function Carousel1() {
   const navigate=useNavigate();
   const searchB=async(e)=>{
     e.preventDefault();
-    await dispatch(searchFood('type=burger'));
+    await dispatch(searchFood('type=search&ss=burger'));
     await navigate('/search');
   }
   const searchC=async(e)=>{
     e.preventDefault();
-    await dispatch(searchFood('type=chocklate'));
+    await dispatch(searchFood('type=search&ss=cake'));
     await navigate('/search');
   }
   return (
