@@ -2,14 +2,27 @@ import React from "react";
 import Navbar from "../Components/Navbar";
 import FoodArea from "../Components/foodArea";
 import {useSelector} from 'react-redux'
+import { useState } from "react";
+import Spinner from "../Components/Spinner";
+
 
 function Search() {
+  const [st, setSt] = useState("hi");
   let story = [{name:'data not found', img:""}];
  
-  story=useSelector((state)=>{
+   story=useSelector((state)=>{
     return state.search.fooditem;
   })
+  st && setSt("hi");
   return (
+    <>
+    {
+      useSelector((state)=>{
+        return state.search.isLoading;
+      })
+      ?
+      <Spinner/>
+      :
     <div>
       <Navbar />
       <div className="w-full h-auto flex justify-center items-center flex-wrap">
@@ -24,6 +37,8 @@ function Search() {
 
       </div>
     </div>
+      }
+      </>
   );
 }
 

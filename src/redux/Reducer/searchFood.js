@@ -3,7 +3,6 @@ import { createSlice ,createAsyncThunk} from "@reduxjs/toolkit";
 
 export const searchFood=createAsyncThunk("searchFood",async(params)=>{
 
-    
     const response=await fetch( "https://foodiebackend-wwb1.onrender.com/api/getfood?"+params,{
 
         method:"GET",
@@ -14,6 +13,7 @@ export const searchFood=createAsyncThunk("searchFood",async(params)=>{
     });
 
     const temp=response.json();
+    console.log(temp);
     return temp;
     
 })
