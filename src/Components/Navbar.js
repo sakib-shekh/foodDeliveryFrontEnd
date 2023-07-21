@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { searchFood } from "../redux/Reducer/searchFood";
 import { useNavigate } from "react-router-dom";
+import Spinner from "./Spinner";
 function Navbar() {
+  const [st,setSt]=useState('hi');
   const navigate = useNavigate();
   const despatch = useDispatch();
   const [search, setSearch] = useState("");
@@ -15,10 +17,19 @@ function Navbar() {
     if (search !== "") {
       const temp = `type=search&ss=${search.search}`;
       await despatch(searchFood(temp));
-      navigate("/search");
+      setSt('hi');
+      st && navigate("/search");
     }
   };
   return (
+    <>
+    {
+      useSelector((state)=>{
+        return state.search.isLoading;
+      })
+      ?
+      <Spinner/>
+      :
     <nav className="flex flex-col  w-full">
       <div className=" bg-red-400 w-full h-12 flex font-sans text-slate-50 pl-4 pr-4 lg:pl-10 lg:pr-10 ">
         <div className="w-2/6 flex justify-center items-center h-full ">
@@ -99,6 +110,8 @@ function Navbar() {
         </form>
       </div>
     </nav>
+          }
+    </>
   );
 }
 

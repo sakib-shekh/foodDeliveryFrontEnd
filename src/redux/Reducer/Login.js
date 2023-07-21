@@ -36,8 +36,6 @@ const loginUserSlice =createSlice({
          window.localStorage.setItem('token',action.payload.token);
          window.localStorage.setItem('name',action.payload.name);
          window.localStorage.setItem('email',action.payload.email);
-       
-         window.location.replace('/');
 
         })
         builder.addCase(loginUser.pending,(state)=>{

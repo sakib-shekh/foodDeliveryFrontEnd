@@ -1,21 +1,23 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { createUser } from "../redux/Reducer/Register";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { useRef } from "react";
+import Spinner from "../Components/Spinner";
 import "react-toastify/dist/ReactToastify.css";
 import validator from 'validator';
 function Register() {
+  const [jst, sJst] = useState("hi");
   const navigate=useNavigate();
   const toastId=useRef(null);
   const dismiss = () =>  toast.dismiss(toastId.current);
   const notify = (temp) => {
    toastId.current= toast(temp, {
       position: "top-right",
-      autoClose: 5000,
+      autoClose: 2000,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,
@@ -47,16 +49,23 @@ function Register() {
       return;
     }
     await  dispatch(createUser(login));
-    await dismiss();
+    jst && await dismiss();
+    sJst("hi");
     await notify(window.localStorage.getItem("message"));
     if(window.localStorage.getItem('message')=== "user already exist")
     navigate('/login');
+    if(window.localStorage.getItem('message')==='success')
+    navigate('/');
   };
   
   return (
     <>
-      
-
+      {
+        useSelector((state)=>{
+          return state.custom1.isLoading;
+        })?
+        <Spinner/>
+        :
       <div className="bg-red-400 h-screen flex justify-center items-center">
         <div className="bg-white rounded-lg p-5 w-70 flex justify-center">
           <div>
@@ -134,6 +143,7 @@ function Register() {
           </div>
         </div>
       </div>
+      }
     </>
   );
 }
