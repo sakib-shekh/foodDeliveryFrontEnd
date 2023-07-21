@@ -2,18 +2,18 @@ import React from "react";
 import Navbar from "../Components/Navbar";
 import FoodArea from "../Components/foodArea";
 import {useSelector} from 'react-redux'
-import { useState } from "react";
+// import { useState } from "react";
 import Spinner from "../Components/Spinner";
 
 
 function Search() {
-  const [st, setSt] = useState("hi");
+  // const [st, setSt] = useState("hi");
   let story = [{name:'data not found', img:""}];
  
    story=useSelector((state)=>{
     return state.search.fooditem;
   })
-  st && setSt("hi");
+  // st && setSt("hi");
   return (
     <>
     {
