@@ -17,7 +17,7 @@ function Profile() {
       <div className="flex justify-center items-center p-2 ">
         <div className="w-4/5 h-auto border-2 border-slate-400 flex justify-center items-center flex-col p-4 rounded-lg  sm:flex-col bg-white ">
           <div className="">
-            <img className="w-40" src="/user.png" alt="..."></img>
+            <img className="w-40 rounded-full p-2" src="/user.png" alt="..."></img>
           </div>
           <div className="flex flex-col justify-center items-center">
             <h1 className="p-2">name: {localStorage.getItem("name")}</h1>
